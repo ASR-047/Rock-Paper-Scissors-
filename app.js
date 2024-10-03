@@ -1,105 +1,61 @@
-function getComputerChoice()
-{
+function getComputerChoicee() {
     let random;
-    random=Math.floor(Math.random()*3)+1;
-    if(random==1)
-    {
-        return "rock";
-    }
-    else if(random==2)
-    {
-        return "paper"
-    }
+    random = Math.floor(Math.random() * 3);
+    if (random === 0)
+        return "Paper";
+    else if (random == 1)
+        return "Scissor";
     else
-    {
-        return "scissors"
-    }
+        return "Rock";
 }
 
 const formatChoice = (choice) => choice.charAt(0).toUpperCase() + choice.slice(1).toLowerCase();
 
-function getHumanChoice()
-{
-    let choice=prompt("Choose: rock, paper , scissor")
-    return formatChoice(choice);
-
+function getHumanChoicee() {
+    let choice = prompt("Choose: Rock, Paper, or Scissor"); // Get user input
+    return formatChoice(choice); // Use the formatChoice function to format the input
 }
+let humanScore = 0;
+let computerScore = 0;
 
-let humanScore=0;
-let computerScore=0;
-
-
-function playRound(computerChoice, humanChoice)
-{
-    let computer ="You Loose " + computerChoice + " beats " + humanChoice;
-    let human = "You WIN " + humanChoice + " beats " + computerChoice;
-
-    if(computerChoice === humanChoice)
-    {
-        console.log("Its a draw")
-    }
-    else if(computerChoice === "paper" && humanChoice === "rock")
-    {
-        console.lpg(computer);
+function playRound(ComputerChoice, HumanChoice) {
+    let pc = "You lose! " + ComputerChoice + " beats " + HumanChoice;
+    let human = "You win! " + HumanChoice + " beats " + ComputerChoice;
+    if (ComputerChoice === HumanChoice)
+        console.log("It's a draw! you bouth chose " + ComputerChoice);
+    else if (ComputerChoice === "Paper" && HumanChoice === "Rock") {
+        console.log(pc);
         computerScore++;
-    }
-    else if(computerChoice === "paper" && humanChoice === "scissor")
-        {
-            console.lpg(human);
-            humanScore++;
-        }
-    else if(computerChoice === "rock" && humanChoice === "paper")
-        {
-            console.lpg(computer);
-            computerScore++;
-        }
-    else if(computerChoice === "rock" && humanChoice === "scissor")
-       {
-         console.lpg(human);
-         humanScore++;
-        }
-    else if(computerChoice === "scissor" && humanChoice === "paper")
-    {
-        console.log(computer);
+    } else if (ComputerChoice === "Paper" && HumanChoice === "Scissor") {
+        console.log(human);
+        humanScore++;
+    } else if (ComputerChoice === "Rock" && HumanChoice === "Paper") {
+        console.log(human);
+        humanScore++;
+    } else if (ComputerChoice === "Rock" && HumanChoice === "Scissor") {
+        console.log(pc);
         computerScore++;
-    }
-    else if(computerChoice === "scissor" && humanChoice === "rock")
-    {
+    } else if (ComputerChoice === "Scissor" && HumanChoice === "Paper") {
+        console.log(pc);
+        computerScore++;
+    } else if (ComputerChoice === "Scissor" && HumanChoice === "Rock") {
         console.log(human);
         humanScore++;
     }
-                   
-            
 }
 
-function playGame()
-{
-    let i =0;
-    while(i<=5){
-        const humanSelection=getHumanChoice();
-        const computerSelection=getComputerChoice();
-        console.log(humanSelection);
-        console.log(computerSelection);
-        
+function playGame() {
+    let i = 0;
+    while (i < 5) {
+        const humanSelection = getHumanChoicee();
+        const computerSelection = getComputerChoicee();
         playRound(computerSelection, humanSelection);
         i++;
-
     }
-
-    if(humanSelection === computerSelection)
-    {
-        console.log("its a draw");
-
-    }
-    else if( humanSelection > computerSelection)
-    {
-        console.log("You win!");
-    }
-    else
-    {
-        console.log("You loose! Computer won");
-    }
-
+    if (humanScore === computerScore) {
+        console.log("You have a draw");
+    } else if (humanScore > computerScore) {
+        console.log("You are the winner");
+    } else
+        console.log("The computer is the winner");
 }
-
-playGame();
